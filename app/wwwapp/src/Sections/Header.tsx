@@ -13,12 +13,9 @@ export default function Header() {
                     <Link className="text-sm font-medium hover:underline underline-offset-4" to="/docs/fade-in">
                         Docs
                     </Link>
-                    {/* <Link className="text-sm font-medium hover:underline underline-offset-4" to="#">
+                    <Link className="text-sm font-medium hover:underline underline-offset-4" to="/exemple">
                         Examples
                     </Link>
-                    <Link className="text-sm font-medium hover:underline underline-offset-4" to="#">
-                        GitHub
-                    </Link> */}
                     </nav>
                 </div>
                 <div className="flex flex-1 items-center justify-between space-x-2 md:justify-end">
