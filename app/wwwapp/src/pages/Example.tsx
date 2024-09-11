@@ -1,7 +1,7 @@
 import PerspectiveEffect from "../@/animation/perspective"
 import FadeIn from "../@/animation/fade-in"
 
-export default function Exemple() { 
+export default function Example() { 
 	return(
       <FadeIn from="bottom">   
         <div >

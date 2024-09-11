@@ -10,10 +10,10 @@ export default function Header() {
                         <span className="ml-2 text-lg font-bold">noshmaster/anim</span>
                     </Link>
                     <nav className="flex items-center gap-4 text-sm lg:gap-6">
-                    <Link className="text-sm font-medium hover:underline underline-offset-4" to="/docs/fade-in">
+                    <Link className="text-sm font-medium hover:underline underline-offset-4" to="/docs/animation/fade-in">
                         Docs
                     </Link>
-                    <Link className="text-sm font-medium hover:underline underline-offset-4" to="/exemple">
+                    <Link className="text-sm font-medium hover:underline underline-offset-4" to="/example">
                         Examples
                     </Link>
                     </nav>
