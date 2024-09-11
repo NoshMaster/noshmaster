@@ -1,5 +1,5 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useRef } from 'react';
+import { motion, useInView } from 'framer-motion';
 
 type Direction = 'top' | 'bottom' | 'left' | 'right';
 
@@ -11,6 +11,10 @@ interface FadeInProps {
 }
 
 const FadeIn: React.FC<FadeInProps> = ({ children, from, opacity = true, duration = 1 }) => {
+  const ref = useRef<HTMLDivElement | null>(null);
+
+  const isInView = useInView(ref, { once: true, amount: 0.1 });
+
   const initialPosition = () => {
     switch (from) {
       case 'top':
@@ -26,11 +30,11 @@ const FadeIn: React.FC<FadeInProps> = ({ children, from, opacity = true, duratio
     }
   };
 
-
   return (
     <motion.div
+      ref={ref}
       initial={{ ...initialPosition(), opacity: opacity ? 0 : 1 }}
-      animate={{ x: 0, y: 0, opacity: 1 }}
+      animate={isInView ? { x: 0, y: 0, opacity: 1 } : {}}
       transition={{
         x: { duration },
         y: { duration },
