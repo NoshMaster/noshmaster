@@ -1,6 +1,6 @@
 {
   "name": "noshmaster",
-  "version": "1.1.1",
+  "version": "1.1.6",
   "description": "CLI utility for copying animations",
   "main": "index.js",
   "bin": {
@@ -9,6 +9,8 @@
   "files": [
     "components/fade-in.tsx",
     "components/perspective.tsx",
+    "components/counter.tsx",
+    "components/utils.ts",
     "index.js",
     "README.md"
   ],
