@@ -1,5 +1,6 @@
 import PerspectiveEffect from "../@/animation/perspective"
 import FadeIn from "../@/animation/fade-in"
+import Count from "../@/animation/counter"
 
 export default function Example() { 
 	return(
@@ -68,9 +69,9 @@ export default function Example() {
                 </p>
                 </FadeIn>
                 <FadeIn from="bottom">
-                <span className="font-bold border border-input py-1 px-3 rounded-sm text-muted-foreground">
-                    Key Features
-                </span>
+                    <span className="font-bold border border-input py-1 px-3 rounded-sm text-muted-foreground">
+                        Key Features
+                    </span>
                 </FadeIn>
                 <div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-4xl grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-2 lg:gap-y-16">
                 <FadeIn from="left">
@@ -129,6 +130,29 @@ export default function Example() {
                     </div>
                     </FadeIn>
                 </div>
+            </section>
+            <section className="flex py-20 flex-col items-center justify-center text-foreground gap-3">
+                <h6 className="font-bold border border-input py-1 px-3 rounded-sm text-muted-foreground">Analytics</h6>
+                <h2 className="max-w-5xl text-3xl text-center font-extrabold sm:text-4xl md:text-5xl">Powerful Animation Library</h2>
+                <p className="text-muted-foreground max-w-2xl text-sm sm:text-md md:text-xl text-center">Unlock the true potential of your website with our advanced animation components. </p>    
+                    <div className="mx-auto mt-10 max-w-2xl sm:mt-14 lg:mt-16 lg:max-w-4xl grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-2 lg:gap-y-8">
+                        <div className="bg-border flex flex-col items-center justify-center py-6 px-14 rounded-xl">
+                            <Count className="text-background font-bold text-6xl" number={499} duration={2} />
+                            <h4 className="text-muted-foreground">Downloads</h4>
+                        </div>
+                        <div className="bg-border flex flex-col items-center justify-center py-6 px-14 rounded-xl">
+                            <Count className="text-background font-bold text-6xl" number={260} duration={2} />
+                            <h4 className="text-muted-foreground">Stars</h4>
+                        </div>
+                        <div className="bg-border flex flex-col items-center justify-center py-6 px-14 rounded-xl">
+                            <Count className="text-background font-bold text-6xl" number={314} duration={2} />
+                            <h4 className="text-muted-foreground">Time Saved</h4>
+                        </div>
+                        <div className="bg-border flex flex-col items-center justify-center py-6 px-14 rounded-xl">
+                            <Count className="text-background font-bold text-6xl" number={410} duration={2} />
+                            <h4 className="text-muted-foreground">Down Votes</h4>
+                        </div>
+                    </div>
             </section>
             <section className="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl text-center py-20 flex flex-col text-foreground">
                 

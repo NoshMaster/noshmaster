@@ -92,15 +92,8 @@ export default PerspectiveEffect;
                         </BreadcrumbItem>
                     </BreadcrumbList>
                 </Breadcrumb>
-                <h1 className='scroll-m-20 mt-6 text-3xl font-bold tracking-tight'>Installation</h1>
+                <h1 className='scroll-m-20 mt-6 text-3xl font-bold tracking-tight'>Perspective Animation</h1>
                 <p className='text-muted-foreground'>Adds a dynamic 3D perspective effect based on the scroll position of the page.</p>
-                <div className='mt-6'>
-                    <div className='bg-[#2b2b2b] rounded-sm p-1'>
-                        <SyntaxHighlighter language='bash' style={a11yDark}>
-                            npx noshmaster@latest add perspective
-                        </SyntaxHighlighter>
-                    </div>
-                </div>
                 <Tabs defaultValue="preview" className="mt-6">
                     <TabsList className="grid grid-cols-2 w-[200px]">
                         <TabsTrigger value="preview">Preview</TabsTrigger>

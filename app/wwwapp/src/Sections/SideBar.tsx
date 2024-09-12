@@ -15,6 +15,7 @@ export default function SideBar() {
                 <div className="grid grid-flow-row auto-rows-max text-sm">
                     <Link to="/docs/animation/fade-in" className="group flex w-full items-center rounded-md border border-transparent px-2 py-1 hover:underline text-muted-foreground">Fade-In</Link>
                     <Link to="/docs/animation/perspective" className="group flex w-full items-center rounded-md border border-transparent px-2 py-1 hover:underline text-muted-foreground">Perspective</Link>
+                    <Link to="/docs/animation/counter" className="group flex w-full items-center rounded-md border border-transparent px-2 py-1 hover:underline text-muted-foreground">Counter</Link>
                 </div>
             </div>
         </div>

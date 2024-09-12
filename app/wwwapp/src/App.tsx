@@ -4,6 +4,7 @@ import InstallationPage from './pages/Docs/InstallationPage';
 import FadeInPage from './pages/Docs/FadeInPage';
 import PerspectiveEffectPage from './pages/Docs/PerspectiveEffectPage';
 import Example from './pages/Example';
+import CounterPage from './pages/Docs/CounterPage';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/docs/installation" element={<InstallationPage />} />
         <Route path="/docs/animation/fade-in" element={<FadeInPage />} />
         <Route path="/docs/animation/perspective" element={<PerspectiveEffectPage />} />
+        <Route path="/docs/animation/counter" element={<CounterPage />} />
       </Routes>
     </BrowserRouter>
   );

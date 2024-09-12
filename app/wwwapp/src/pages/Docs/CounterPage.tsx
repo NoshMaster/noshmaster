@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import Template from '../Template';
 import {
     Breadcrumb,
@@ -8,7 +8,7 @@ import {
     BreadcrumbList,
     BreadcrumbPage,
     BreadcrumbSeparator,
-} from "../../@/components/ui/breadcrumb"
+} from "../../@/components/ui/breadcrumb";
 
 import { a11yDark } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 import SyntaxHighlighter from 'react-syntax-highlighter';
@@ -18,119 +18,119 @@ import {
     TabsContent,
     TabsList,
     TabsTrigger,
-} from "../../@/components/ui/tabs"
+} from "../../@/components/ui/tabs";
+import Count from '../../@/animation/counter';
 
-import FadeIn from '../../@/animation/fade-in';
 import { ScrollArea } from '../../@/components/ui/scroll-area';
 
-export default function FadeInPage() {
-    const codeString = `import FadeIn from '@/animation/FadeIn';
+export default function CountPage() {
+    const codeString = `import Count from '@/animation/counter';
 
 const App = () => (
-    <div>
-        <FadeIn from="bottom" duration={1.5}>
-            <h1>The web builder for stunning sites.</h1>
-        </FadeIn>
+    <div className="px-4 py-24 border rounded-sm flex items-center justify-center">
+        <Count number={1000} duration={3} className="text-3xl font-bold" />
     </div>
 );
 
-export default App;`
+export default App;`;
 
-    const fadeInString = `import React from 'react';
-import { motion } from 'framer-motion';
 
-type Direction = 'top' | 'bottom' | 'left' | 'right';
+    const counterComponentCode = `import React, { useEffect, useState, useRef } from 'react';
+import { useInView } from './lib/utils';
 
-interface FadeInProps {
-  children: React.ReactNode;
-  from?: Direction;
-  opacity?: boolean;
-  duration?: number;
+interface CountProps {
+  className?: string;
+  number: number;
+  duration: number;
 }
 
-const FadeIn: React.FC<FadeInProps> = ({ children, from, opacity = true, duration = 1 }) => {
-  const initialPosition = () => {
-    switch (from) {
-      case 'top':
-        return { y: -100 };
-      case 'bottom':
-        return { y: 100 };
-      case 'left':
-        return { x: -100 };
-      case 'right':
-        return { x: 100 };
-      default:
-        return { y: 0 };
-    }
-  };
+const easeOutQuad = (t: number) => {
+  return t * (2 - t);
+};
 
+const Count: React.FC<CountProps> = ({ number, duration, className }) => {
+  const [count, setCount] = useState(0);
+  const countRef = useRef<HTMLDivElement>(null);
+  const isInView = useInView(countRef, { threshold: 0.5 });
 
+  useEffect(() => {
+    if (!isInView) return;
+
+    const end = number;
+    const totalMsDuration = duration * 1000;
+    const startTime = performance.now();
+
+    const tick = (now: number) => {
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / totalMsDuration, 1);
+      const easedProgress = easeOutQuad(progress);
+
+      setCount(Math.round(easedProgress * end));
+
+      if (progress < 1) {
+        requestAnimationFrame(tick);
+      }
+    };
+
+    requestAnimationFrame(tick);
+
+    return () => {
+    };
+  }, [isInView, number, duration]); 
   return (
-    <motion.div
-      initial={{ ...initialPosition(), opacity: opacity ? 0 : 1 }}
-      animate={{ x: 0, y: 0, opacity: 1 }}
-      transition={{
-        x: { duration },
-        y: { duration },
-        opacity: opacity ? { duration, delay: duration / 2 } : { duration: 0 },
-      }}
-    >
-      {children}
-    </motion.div>
+    <h3 className={className} ref={countRef}>
+      {count}
+    </h3>
   );
 };
 
-export default FadeIn;
+export default Count;
+
 `
 
     const [isVisible, setIsVisible] = useState(false);
 
     const handleToggle = () => {
-    setIsVisible(!isVisible);
+        setIsVisible(!isVisible);
     };
 
     const props = [
         {
-        name: 'children',
-        type: 'React.ReactNode',
-        defaultValue: 'undefined',
-        description: 'The content that you want to animate. This can be any valid React node, such as text, elements, or components.'
+            name: 'className',
+            type: 'string',
+            defaultValue: 'undefined',
+            description: 'An optional class name to apply to the component. This allows for custom styling.'
         },
         {
-        name: 'from',
-        type: "'top' | 'bottom' | 'left' | 'right'",
-        defaultValue: 'undefined',
-        description: 'Determines the direction from which the component will animate in. Possible values are: \'top\', \'bottom\', \'left\', \'right\'.'
+            name: 'number',
+            type: 'number',
+            defaultValue: '0',
+            description: 'The final number to count up to. This is the target value that will be displayed.'
         },
         {
-        name: 'opacity',
-        type: 'boolean',
-        defaultValue: 'true',
-        description: 'If true, the component will fade in by changing its opacity from 0 to 1. If false, only position animations will occur without opacity changes.'
-        },
-        {
-        name: 'duration',
-        type: 'number',
-        defaultValue: '1',
-        description: 'Specifies the duration of the animation in seconds. This duration applies to both the position and opacity transitions.'
+            name: 'duration',
+            type: 'number',
+            defaultValue: '1',
+            description: 'The duration of the animation in seconds. This defines how long it will take to count up to the target number.'
         }
     ];
+
     return (
         <Template>
             <div className='mx-auto w-full min-w-0'>
                 <Breadcrumb>
                     <BreadcrumbList>
                         <BreadcrumbItem>
-                        <BreadcrumbLink>Docs</BreadcrumbLink>
+                            <BreadcrumbLink>Docs</BreadcrumbLink>
                         </BreadcrumbItem>
                         <BreadcrumbSeparator />
                         <BreadcrumbItem>
-                        <BreadcrumbLink className='text-foreground'>Fade-In</BreadcrumbLink>
+                            <BreadcrumbLink className='text-foreground'>Count Component</BreadcrumbLink>
                         </BreadcrumbItem>
                     </BreadcrumbList>
                 </Breadcrumb>
-                <h1 className='scroll-m-20 mt-6 text-3xl font-bold tracking-tight'>Fade-In Animation</h1>
-                <p className='text-muted-foreground'>Makes an element appear by increasing its opacity & location over time.</p>
+                <h1 className='scroll-m-20 mt-6 text-3xl font-bold tracking-tight'>Count Animation</h1>
+                <p className='text-muted-foreground'>A component that animates a number count-up effect when it comes into view.</p>
                 <Tabs defaultValue="preview" className="mt-6">
                     <TabsList className="grid grid-cols-2 w-[200px]">
                         <TabsTrigger value="preview">Preview</TabsTrigger>
@@ -138,14 +138,12 @@ export default FadeIn;
                     </TabsList>
                     <TabsContent value="preview">
                         <div className="px-4 py-24 border rounded-sm flex items-center justify-center">
-                            <FadeIn from="bottom" duration={1.5}>
-                                <h1 className="text-4xl font-bold">The web builder for stunning sites.</h1>
-                            </FadeIn>
+                            <Count number={1000} duration={3} className="text-3xl font-bold" />
                         </div>
                     </TabsContent>
                     <TabsContent value="code">
                         <div className='mt-8 scroll-m-20 bg-[#2b2b2b] rounded-sm p-1'>
-                            <SyntaxHighlighter language='tsx' style={a11yDark}>
+                            <SyntaxHighlighter language='jsx' style={a11yDark}>
                                 {codeString}
                             </SyntaxHighlighter>
                         </div>
@@ -158,8 +156,8 @@ export default FadeIn;
                     </TabsList>
                     <TabsContent value="cli">
                         <div className='mt-8 scroll-m-20 bg-[#2b2b2b] rounded-sm p-1'>
-                            <SyntaxHighlighter language="javascript" style={a11yDark}>
-                            npx noshmaster@latest add fade-in
+                            <SyntaxHighlighter language="bash" style={a11yDark}>
+                                npx noshmaster@latest add count
                             </SyntaxHighlighter>
                         </div>
                     </TabsContent>
@@ -177,43 +175,42 @@ export default FadeIn;
                             {isVisible ? (
                                 <ScrollArea className="h-[50rem] rounded-md">
                                     <div className="bg-[#2b2b2b] rounded-sm p-1">
-                                        <SyntaxHighlighter language='tsx' style={a11yDark}>
-                                            {fadeInString}
+                                        <SyntaxHighlighter language='jsx' style={a11yDark}>
+                                            {counterComponentCode}
                                         </SyntaxHighlighter>
                                     </div>
                                 </ScrollArea>
 
                             ): (
                                 <div className="bg-[#2b2b2b] rounded-sm p-1">
-                                <SyntaxHighlighter language='tsx' style={a11yDark}>
-                                    {fadeInString}
-                                </SyntaxHighlighter>
-                            </div>
+                                    <SyntaxHighlighter language='jsx' style={a11yDark}>
+                                        {counterComponentCode}
+                                    </SyntaxHighlighter>
+                                </div>
                             )}
                             
                         </div>
                     </TabsContent>
                 </Tabs>
-                
                 <table className="mt-10 min-w-full bg-white border border-gray-200 rounded-lg overflow-hidden">
                     <thead className="bg-gray-100 border-b border-gray-200">
                         <tr>
-                        <th className="px-6 py-3 text-left text-gray-600 font-medium">Name</th>
-                        <th className="px-6 py-3 text-left text-gray-600 font-medium">Default Value</th>
-                        <th className="px-6 py-3 text-left text-gray-600 font-medium">Description</th>
+                            <th className="px-6 py-3 text-left text-gray-600 font-medium">Name</th>
+                            <th className="px-6 py-3 text-left text-gray-600 font-medium">Default Value</th>
+                            <th className="px-6 py-3 text-left text-gray-600 font-medium">Description</th>
                         </tr>
                     </thead>
                     <tbody>
                         {props.map((prop, index) => (
-                        <tr key={index} className="border-b border-gray-200">
-                            <td className="px-6 py-4 text-gray-800">{prop.name}</td>
-                            <td className="px-6 py-4 text-gray-800">{prop.defaultValue}</td>
-                            <td className="px-6 py-4 text-gray-800">{prop.description}</td>
-                        </tr>
+                            <tr key={index} className="border-b border-gray-200">
+                                <td className="px-6 py-4 text-gray-800">{prop.name}</td>
+                                <td className="px-6 py-4 text-gray-800">{prop.defaultValue}</td>
+                                <td className="px-6 py-4 text-gray-800">{prop.description}</td>
+                            </tr>
                         ))}
                     </tbody>
                 </table>
             </div>
         </Template>
-    )
-};
+    );
+}
