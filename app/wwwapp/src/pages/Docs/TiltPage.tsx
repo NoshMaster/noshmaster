@@ -17,7 +17,7 @@ export default function TiltPage() {
     const codeString = `import Tilt from '@/components/Tilt';
 
 const App = () => (
-    <Tilt rotateRatio={20}>
+    <Tilt>
         <img src="https://placehold.co/600x400" />
     </Tilt>
 );

@@ -2,6 +2,7 @@ import PerspectiveEffect from "../@/animation/perspective"
 import FadeIn from "../@/animation/fade-in"
 import Count from "../@/animation/counter"
 import Header from "../Sections/Header"
+import Tilt from "../@/animation/tilt"
 
 export default function Example() {
     return (
@@ -128,22 +129,30 @@ export default function Example() {
                         <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-center">Powerful Animation Library</h2>
                         <p className="text-muted-foreground max-w-2xl text-base sm:text-lg md:text-xl text-center">Unlock the true potential of your website with our advanced animation components. </p>
                         <div className="mx-auto mt-10 sm:mt-14 lg:mt-16 max-w-2xl sm:max-w-4xl grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:gap-y-8">
-                            <div className="bg-border flex flex-col items-center justify-center py-6 px-8 sm:px-14 rounded-xl">
-                                <Count className="text-background font-bold text-4xl sm:text-6xl" number={499} duration={2} />
-                                <h4 className="text-muted-foreground text-sm sm:text-base">Downloads</h4>
-                            </div>
-                            <div className="bg-border flex flex-col items-center justify-center py-6 px-8 sm:px-14 rounded-xl">
-                                <Count className="text-background font-bold text-4xl sm:text-6xl" number={260} duration={2} />
-                                <h4 className="text-muted-foreground text-sm sm:text-base">Stars</h4>
-                            </div>
-                            <div className="bg-border flex flex-col items-center justify-center py-6 px-8 sm:px-14 rounded-xl">
-                                <Count className="text-background font-bold text-4xl sm:text-6xl" number={314} duration={2} />
-                                <h4 className="text-muted-foreground text-sm sm:text-base">Time Saved</h4>
-                            </div>
-                            <div className="bg-border flex flex-col items-center justify-center py-6 px-8 sm:px-14 rounded-xl">
-                                <Count className="text-background font-bold text-4xl sm:text-6xl" number={410} duration={2} />
-                                <h4 className="text-muted-foreground text-sm sm:text-base">Down Votes</h4>
-                            </div>
+                            <Tilt>
+                                <div className="bg-foreground flex flex-col items-center justify-center py-6 px-14 sm:px-20 rounded-xl">
+                                    <Count className="text-background font-bold text-4xl sm:text-6xl" number={499} duration={2} />
+                                    <h4 className="text-muted-foreground text-sm sm:text-base">Downloads</h4>
+                                </div>
+                            </Tilt>
+                            <Tilt>
+                                <div className="bg-foreground flex flex-col items-center justify-center py-6 px-14 sm:px-20 rounded-xl">
+                                    <Count className="text-background font-bold text-4xl sm:text-6xl" number={260} duration={2} />
+                                    <h4 className="text-muted-foreground text-sm sm:text-base">Stars</h4>
+                                </div>
+                            </Tilt>
+                            <Tilt>
+                                <div className="bg-foreground flex flex-col items-center justify-center py-6 px-14 sm:px-20 rounded-xl">
+                                    <Count className="text-background font-bold text-4xl sm:text-6xl" number={314} duration={2} />
+                                    <h4 className="text-muted-foreground text-sm sm:text-base">Time Saved</h4>
+                                </div>
+                            </Tilt>
+                            <Tilt>
+                                <div className="bg-foreground flex flex-col items-center justify-center py-6 px-14 sm:px-20 rounded-xl">
+                                    <Count className="text-background font-bold text-4xl sm:text-6xl" number={410} duration={2} />
+                                    <h4 className="text-muted-foreground text-sm sm:text-base">Down Votes</h4>
+                                </div>
+                            </Tilt>
                         </div>
                     </section>
                     <section className="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl text-center py-12 sm:py-20 flex flex-col text-foreground">

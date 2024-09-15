@@ -3,7 +3,7 @@ import React, { useState } from "react";
 interface TiltProps {
   children: React.ReactNode;
   className?: string;
-  rotateRatio: number;
+  rotateRatio?: number;
 }
 
 const Tilt: React.FC<TiltProps> = ({ children, className, rotateRatio = 20 }) => {
