@@ -17,10 +17,7 @@ export default function SideBar() {
                     <Link to="/docs/animation/fade-in" className="group flex items-center rounded-md border border-transparent px-2 py-1 hover:underline text-muted-foreground">Fade-In</Link>
                     <Link to="/docs/animation/perspective" className="group flex items-center rounded-md border border-transparent px-2 py-1 hover:underline text-muted-foreground">Perspective</Link>
                     <Link to="/docs/animation/counter" className="group flex items-center rounded-md border border-transparent px-2 py-1 hover:underline text-muted-foreground">Counter</Link>
-                    <div className="flex items-center">
-                        <Link to="/docs/animation/tilt" className="group flex items-center rounded-md border border-transparent px-2 py-1 mr-2 hover:underline text-muted-foreground">Tilt</Link>
-                        <Badge>New</Badge>
-                    </div>
+                    <Link to="/docs/animation/tilt" className="group flex items-center rounded-md border border-transparent px-2 py-1 mr-2 hover:underline text-muted-foreground">Tilt<Badge className="ml-3">New</Badge></Link>
                 </div>
             </div>
         </div>
