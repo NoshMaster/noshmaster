@@ -5,6 +5,7 @@ import FadeInPage from './pages/Docs/FadeInPage';
 import PerspectiveEffectPage from './pages/Docs/PerspectiveEffectPage';
 import Example from './pages/Example';
 import CounterPage from './pages/Docs/CounterPage';
+import TiltPage from './pages/Docs/TiltPage';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/docs/animation/fade-in" element={<FadeInPage />} />
         <Route path="/docs/animation/perspective" element={<PerspectiveEffectPage />} />
         <Route path="/docs/animation/counter" element={<CounterPage />} />
+        <Route path="/docs/animation/Tilt" element={<TiltPage />} />
       </Routes>
     </BrowserRouter>
   );
